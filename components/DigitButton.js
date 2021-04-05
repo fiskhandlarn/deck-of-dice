@@ -6,17 +6,17 @@ import Deck from '../shared/Deck';
 export default class DigitButton extends React.Component {
   constructor(props) {
     super(props);
+    this.deck = new Deck();
     this.state = {
       count: '!',
     };
   }
 
   onPress = () => {
-    this.setState({ count: 12 });
+    this.setState({ count: this.deck.draw() });
   };
 
   render() {
-    //console.log('render!');
     return (
       <View>
         <Pressable onPress={this.onPress} style={styles.button}>
