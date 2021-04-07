@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     width: vh(80),
   },
   buttonText: {
-    color: '#000',
+    color: '#222',
     lineHeight: vh(70),
+    letterSpacing: -vh(3.5),
   },
 });
