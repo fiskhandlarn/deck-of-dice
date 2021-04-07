@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { vh } from 'react-native-expo-viewport-units';
 
 export default class DigitButton extends React.Component {
@@ -8,6 +8,7 @@ export default class DigitButton extends React.Component {
     this.props = props;
     this.state = {
       digit: '!',
+      animation: new Animated.Value(vh(70)),
     };
   }
 
@@ -17,28 +18,40 @@ export default class DigitButton extends React.Component {
 
   setDigit(digit) {
     this.setState({ digit: digit });
+
+    Animated.sequence([
+      Animated.timing(this.state.animation, {
+        toValue: vh(80),
+        duration: 0
+      }),
+      Animated.timing(this.state.animation, {
+        toValue: vh(70),
+        duration: 200
+      }),
+    ]).start();
   }
 
   render() {
     return (
-      <View>
-        <Pressable onPress={this.onPress} style={styles.button}>
-          <Text style={styles.buttonText}>{this.state.digit}</Text>
-        </Pressable>
-      </View>
+      <Pressable onPress={this.onPress} style={styles.button}>
+        <Animated.Text style={[styles.buttonText, { fontSize: this.state.animation }]}>{this.state.digit}</Animated.Text>
+      </Pressable>
     )
   }
 }
 
 const styles = StyleSheet.create({
   button: {
-    borderWidth: StyleSheet.hairlineWidth,
+    alignItems: 'center',
     borderColor: '#f0f0f0',
-    paddingHorizontal: vh(5),
+    borderWidth: StyleSheet.hairlineWidth,
+    display: 'flex',
+    height: vh(80),
+    overflow: 'hidden',
+    width: vh(80),
   },
   buttonText: {
-    fontSize: vh(70),
-    lineHeight: vh(70),
     color: '#000',
+    lineHeight: vh(70),
   },
 });
