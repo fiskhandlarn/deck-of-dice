@@ -1,6 +1,6 @@
 import React from 'react'
 import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
-import { vh } from 'react-native-expo-viewport-units';
+import { vmin } from 'react-native-expo-viewport-units';
 
 export default class DigitButton extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class DigitButton extends React.Component {
     this.props = props;
     this.state = {
       digit: '!',
-      animation: new Animated.Value(vh(70)),
+      animation: new Animated.Value(vmin(70)),
     };
   }
 
@@ -21,11 +21,11 @@ export default class DigitButton extends React.Component {
 
     Animated.sequence([
       Animated.timing(this.state.animation, {
-        toValue: vh(80),
+        toValue: vmin(80),
         duration: 0
       }),
       Animated.timing(this.state.animation, {
-        toValue: vh(70),
+        toValue: vmin(70),
         duration: 200
       }),
     ]).start();
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     borderColor: '#f0f0f0',
     borderWidth: StyleSheet.hairlineWidth,
     display: 'flex',
-    height: vh(80),
+    height: vmin(80),
     overflow: 'hidden',
-    width: vh(80),
+    width: vmin(80),
   },
   buttonText: {
     color: '#222',
-    lineHeight: vh(70),
-    letterSpacing: -vh(3.5),
+    lineHeight: vmin(70),
+    letterSpacing: -vmin(3.5),
   },
 });
