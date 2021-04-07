@@ -1,26 +1,29 @@
 import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { vh } from 'react-native-expo-viewport-units';
-import Deck from '../shared/Deck';
 
 export default class DigitButton extends React.Component {
   constructor(props) {
     super(props);
-    this.deck = new Deck();
+    this.props = props;
     this.state = {
-      count: '!',
+      digit: '!',
     };
   }
 
   onPress = () => {
-    this.setState({ count: this.deck.draw() });
+    this.props.onChange();
   };
+
+  setDigit(digit) {
+    this.setState({ digit: digit });
+  }
 
   render() {
     return (
       <View>
         <Pressable onPress={this.onPress} style={styles.button}>
-          <Text style={styles.buttonText}>{this.state.count}</Text>
+          <Text style={styles.buttonText}>{this.state.digit}</Text>
         </Pressable>
       </View>
     )
