@@ -7,7 +7,7 @@ export default class DigitButton extends React.Component {
     super(props);
     this.props = props;
     this.state = {
-      digit: '!',
+      value: '!',
       animation: new Animated.Value(1),
     };
   }
@@ -16,8 +16,8 @@ export default class DigitButton extends React.Component {
     this.props.onChange();
   };
 
-  setDigit(digit) {
-    this.setState({ digit: digit });
+  setValue(value) {
+    this.setState({ value: value });
 
     this.state.animation.setValue(1.15);
     Animated.timing(this.state.animation, {
@@ -34,7 +34,7 @@ export default class DigitButton extends React.Component {
       ]
     }
 
-    const digits = this.state.digit.toString().split('');
+    const digits = this.state.value.toString().split('');
 
     return (
       <Pressable onPress={this.onPress} style={styles.button}>
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     color: '#222',
     fontFamily: 'VnBook-Antiqua',
     fontSize: vmin(70),
-    lineHeight: "80%",
     marginLeft: -vmin(1.75),
     marginRight: -vmin(1.75),
     // borderColor: '#f00000',

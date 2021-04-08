@@ -29,7 +29,7 @@ export default class App extends React.Component {
   onChangeDigitButton = () => {
     const card = this.deck.draw();
     // TODO log card here
-    this.digitButton.current.setDigit(card);
+    this.digitButton.current.setValue(card);
   }
 
   render() {
