@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#222',
+    fontFamily: 'VnBook-Antiqua',
     lineHeight: vmin(70),
     letterSpacing: -vmin(3.5),
   },
