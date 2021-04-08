@@ -8,7 +8,7 @@ export default class DigitButton extends React.Component {
     this.props = props;
     this.state = {
       digit: '!',
-      animation: new Animated.Value(vmin(70)),
+      animation: new Animated.Value(1),
     };
   }
 
@@ -19,22 +19,24 @@ export default class DigitButton extends React.Component {
   setDigit(digit) {
     this.setState({ digit: digit });
 
-    Animated.sequence([
-      Animated.timing(this.state.animation, {
-        toValue: vmin(80),
-        duration: 0
-      }),
-      Animated.timing(this.state.animation, {
-        toValue: vmin(70),
-        duration: 200
-      }),
-    ]).start();
+    this.state.animation.setValue(1.15);
+    Animated.timing(this.state.animation, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
   }
 
   render() {
+   const animatedStyles = {
+      transform: [
+        { scale: this.state.animation }
+      ]
+    }
+
     return (
       <Pressable onPress={this.onPress} style={styles.button}>
-        <Animated.Text style={[styles.buttonText, { fontSize: this.state.animation }]}>{this.state.digit}</Animated.Text>
+        <Animated.Text style={[styles.buttonText, animatedStyles]}>{this.state.digit}</Animated.Text>
       </Pressable>
     )
   }
@@ -47,13 +49,17 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     display: 'flex',
     height: vmin(80),
+    justifyContent: 'center',
     overflow: 'hidden',
     width: vmin(80),
   },
   buttonText: {
     color: '#222',
     fontFamily: 'VnBook-Antiqua',
-    lineHeight: vmin(70),
+    fontSize: vmin(70),
+    // lineHeight: vmin(70),
     letterSpacing: -vmin(3.5),
+    borderColor: '#f00000',
+    borderWidth: StyleSheet.hairlineWidth,
   },
 });
