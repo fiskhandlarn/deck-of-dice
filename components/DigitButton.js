@@ -28,15 +28,23 @@ export default class DigitButton extends React.Component {
   }
 
   render() {
-   const animatedStyles = {
+    const animatedStyles = {
       transform: [
         { scale: this.state.animation }
       ]
     }
 
+    const digits = this.state.digit.toString().split('');
+
     return (
       <Pressable onPress={this.onPress} style={styles.button}>
-        <Animated.Text style={[styles.buttonText, animatedStyles]}>{this.state.digit}</Animated.Text>
+        <Animated.View style={[styles.wrapper, animatedStyles]}>
+          {
+            digits.map((digit, i) => (
+              <Text style={styles.digit} key={i}>{digit}</Text>
+            ))
+          }
+        </Animated.View>
       </Pressable>
     )
   }
@@ -45,21 +53,28 @@ export default class DigitButton extends React.Component {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    borderColor: '#f0f0f0',
-    borderWidth: StyleSheet.hairlineWidth,
+    // borderColor: '#0000f0',
+    // borderWidth: StyleSheet.hairlineWidth,
     display: 'flex',
     height: vmin(80),
     justifyContent: 'center',
     overflow: 'hidden',
     width: vmin(80),
   },
-  buttonText: {
+  wrapper: {
+    // borderColor: '#00f000',
+    // borderWidth: StyleSheet.hairlineWidth,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  digit: {
     color: '#222',
     fontFamily: 'VnBook-Antiqua',
     fontSize: vmin(70),
-    // lineHeight: vmin(70),
-    letterSpacing: -vmin(3.5),
-    borderColor: '#f00000',
-    borderWidth: StyleSheet.hairlineWidth,
+    lineHeight: "80%",
+    marginLeft: -vmin(1.75),
+    marginRight: -vmin(1.75),
+    // borderColor: '#f00000',
+    // borderWidth: StyleSheet.hairlineWidth,
   },
 });
