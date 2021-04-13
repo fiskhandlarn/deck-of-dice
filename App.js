@@ -1,17 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import DigitButton from './components/DigitButton';
-import AudioPlayer from './shared/AudioPlayer.js'
-import Deck from './shared/Deck';
+import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AudioPlayer from './shared/AudioPlayer.js'
+import Drawer from './components/Drawer';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.deck = new Deck();
-    this.digitButton = React.createRef();
     this.state = {
       isReady: false,
     };
@@ -37,18 +35,6 @@ export default class App extends React.Component {
     }
   }
 
-  onChangeDigitButton = () => {
-    const card = this.deck.draw();
-    // TODO log card here
-    this.digitButton.current.setValue(card);
-
-    if (card == 7) {
-      AudioPlayer.playSound('dice7');
-    } else {
-      AudioPlayer.playSound('dice');
-    }
-  }
-
   render() {
     if (!this.state.isReady) {
       return (
@@ -61,19 +47,11 @@ export default class App extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
-        <DigitButton onChange={this.onChangeDigitButton} ref={this.digitButton}/>
-        <StatusBar style="auto" />
-      </View>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Drawer />
+        </NavigationContainer>
+      </SafeAreaProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
