@@ -17,7 +17,6 @@ export default class HomeScreen extends React.Component {
 
   onChangeDigitButton = () => {
     const card = this.deck.draw();
-    // TODO log card here
     this.digitButton.current.setValue(card);
 
     if (card == 7) {

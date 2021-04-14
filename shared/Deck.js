@@ -1,7 +1,8 @@
 import { knuthShuffle } from 'knuth-shuffle';
+import Log from './Log';
 
 export default class Deck {
-  constructor(props) {
+  constructor() {
     this.SET_ASIDE_NR_CARDS = 12; // TODO: move to settings
     this.cards = [];
     this.graveyard = [];
@@ -9,17 +10,20 @@ export default class Deck {
 
     this.init();
     this.reset();
+    Log.add("Shuffling deck and setting " + this.SET_ASIDE_NR_CARDS + " cards aside." + " (Cards left: " + this.cards.length + ")");
   }
 
   draw() {
     if (!this.hasMoreCards()) {
       this.reset();
-      console.log("Deck exhausted, reshuffling."+ " (Cards left: " + this.cards.length + ")");
+      //console.log("Deck exhausted, reshuffling." + " (Cards left: " + this.cards.length + ")");
+      Log.add("Deck exhausted, reshuffling and setting " + this.SET_ASIDE_NR_CARDS + " cards aside." + " (Cards left: " + this.cards.length + ")");
     }
 
     var card = this.cards.pop();
     this.graveyard.push(card);
-    console.log("Drew " + card + "." + " (Cards left: " + this.cards.length + ")");
+    //console.log("Drew " + card + "." + " (Cards left: " + this.cards.length + ")");
+    Log.add("Drew " + card + "." + " (Cards left: " + this.cards.length + ")");
     return card;
   }
 
