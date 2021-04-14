@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // borderColor: '#0f0',
     // borderWidth: StyleSheet.hairlineWidth,
-    marginBottom: 64,
+    marginBottom: Header.height,
   },
 });

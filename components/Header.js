@@ -3,6 +3,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default class Header extends React.Component {
+  static height = 64;
+
   constructor(props) {
     super(props);
     this.props = props;
@@ -29,7 +31,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     padding: 16,
-    width:"100%",
+    width: "100%",
+    height: Header.height,
   },
   button: {
     // borderColor: '#0f0',
