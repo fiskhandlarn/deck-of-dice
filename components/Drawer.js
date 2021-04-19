@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import AboutScreen from '../screens/AboutScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LogScreen from '../screens/LogScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 
 // https://snack.expo.io/3vtKkikb7
 const D = createDrawerNavigator();
@@ -17,7 +19,7 @@ export default class Drawer extends React.Component {
           options={{
             drawerIcon: ({focused, size}) => (
               <MaterialCommunityIcons
-                name="cards"
+                name='cards'
                 size={size}
               />
             ),
@@ -29,7 +31,31 @@ export default class Drawer extends React.Component {
           options={{
             drawerIcon: ({focused, size}) => (
               <MaterialIcons
-                name="view-list"
+                name='view-list'
+                size={size}
+              />
+            ),
+          }}
+        />
+        <D.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            drawerIcon: ({focused, size}) => (
+              <MaterialIcons
+                name='settings'
+                size={size}
+              />
+            ),
+          }}
+        />
+        <D.Screen
+          name="About"
+          component={AboutScreen}
+          options={{
+            drawerIcon: ({focused, size}) => (
+              <MaterialIcons
+                name='info'
                 size={size}
               />
             ),
