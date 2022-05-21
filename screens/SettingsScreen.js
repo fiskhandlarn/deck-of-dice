@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Dimensions, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
-import { vw } from 'react-native-expo-viewport-units';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Deck from '../shared/Deck';
 import Header from '../components/Header';
 import Slider from '@react-native-community/slider';
 import Storage from '../shared/Storage';
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
+import { Dimensions, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { vw } from 'react-native-expo-viewport-units';
 
 export default class SettingsScreen extends React.Component {
 
@@ -24,11 +25,14 @@ export default class SettingsScreen extends React.Component {
   }
 
   _onChangeSwitch = (option) => {
-    Storage.set(option, !this.state[option]);
+    let value = !this.state[option];
 
-    this.setState({
-      [option]: !this.state[option],
-    });
+    Storage.set(option, value);
+    this.setState({[option]: value});
+
+    if ('isScreenAlive' === option) {
+      this.updateKeepScreenAlive(value);
+    }
   }
 
   _onChangeNrCardsSetAside = async (value) => {
@@ -57,9 +61,21 @@ export default class SettingsScreen extends React.Component {
         this.setState({
           [option]: value,
         });
+
+        if ('isScreenAlive' === option) {
+          this.updateKeepScreenAlive(value);
+        }
       }
     });
   };
+
+  updateKeepScreenAlive = (value)  => {
+    if (value) {
+      activateKeepAwake();
+    } else {
+      deactivateKeepAwake();
+    }
+  }
 
   render() {
     return (
