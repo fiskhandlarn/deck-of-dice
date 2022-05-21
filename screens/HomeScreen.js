@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AudioPlayer from '../shared/AudioPlayer.js'
+import AudioPlayer from '../shared/AudioPlayer.js';
 import Deck from '../shared/Deck';
 import DigitButton from '../components/DigitButton';
 import Header from '../components/Header';
+import Storage from '../shared/Storage';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -15,14 +16,17 @@ export default class HomeScreen extends React.Component {
     this.deck = new Deck();
   }
 
-  onChangeDigitButton = () => {
+  onChangeDigitButton = async () => {
     const card = this.deck.draw();
     this.digitButton.current.setValue(card);
 
-    if (card == 7) {
-      AudioPlayer.playSound('dice7');
-    } else {
-      AudioPlayer.playSound('dice');
+    const isSoundEnabled = (await Storage.get('isSoundEnabled') === 'true');
+    if (isSoundEnabled) {
+      if (card == 7) {
+        AudioPlayer.playSound('dice7');
+      } else {
+        AudioPlayer.playSound('dice');
+      }
     }
   }
 
