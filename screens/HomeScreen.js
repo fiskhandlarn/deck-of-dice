@@ -13,11 +13,11 @@ export default class HomeScreen extends React.Component {
     this.props = props;
 
     this.digitButton = React.createRef();
-    this.deck = new Deck();
   }
 
   onChangeDigitButton = async () => {
-    const card = this.deck.draw();
+    const deck = await Deck.instance();
+    const card = deck.draw();
     this.digitButton.current.setValue(card);
 
     const isSoundEnabled = (await Storage.get('isSoundEnabled') === 'true');

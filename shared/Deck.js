@@ -1,33 +1,43 @@
 import { knuthShuffle } from 'knuth-shuffle';
 import Log from './Log';
+import Storage from '../shared/Storage';
 
 export default class Deck {
   static _instance = null;
 
-  static _getInstance() {
+  static instance = async () => {
     if (Deck._instance === null) {
-      Deck._instance = new Deck();
+      let nrCardsSetAside = await Storage.get('nrCardsSetAside');
+
+      if (nrCardsSetAside === null || isNaN(parseInt(nrCardsSetAside))) {
+        // not set in storage, use default value
+        nrCardsSetAside = 12;
+      } else {
+        nrCardsSetAside = parseInt(nrCardsSetAside);
+      }
+
+      Deck._instance = new Deck(nrCardsSetAside);
     }
 
     return this._instance;
-  }
+  };
 
-  constructor() {
-    this.setAsideNrCards = 12; // TODO: move to settings
+  constructor (nrCardsSetAside) {
+    this.cardsSetAside = nrCardsSetAside;
     this.cards = [];
     this.graveyard = [];
     this.cardDistribution = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1];
 
     this.init();
     this.reset();
-    Log.add("Shuffling deck and setting " + this.setAsideNrCards + " cards aside." + " (Cards left: " + this.cards.length + ")");
+    Log.add("Shuffling deck and setting " + this.cardsSetAside + " cards aside." + " (Cards left: " + this.cards.length + ")");
   }
 
   draw() {
     if (!this.hasMoreCards()) {
       this.reset();
       //console.log("Deck exhausted, reshuffling." + " (Cards left: " + this.cards.length + ")");
-      Log.add("Deck exhausted, reshuffling and setting " + this.setAsideNrCards + " cards aside." + " (Cards left: " + this.cards.length + ")");
+      Log.add("Deck exhausted, reshuffling and setting " + this.cardsSetAside + " cards aside." + " (Cards left: " + this.cards.length + ")");
     }
 
     var card = this.cards.pop();
@@ -64,7 +74,16 @@ export default class Deck {
     knuthShuffle(this.cards);
 
     // remove 12 cards from draw pile
-    this.setAside(this.setAsideNrCards);
+    this.setAside(this.cardsSetAside);
+  }
+
+  setCardsSetAside(nrCards) {
+    if (nrCards !== this.cardsSetAside) {
+      this.cardsSetAside = nrCards;
+      this.reset();
+      //console.log("Number of cards to set aside changed, reshuffling and setting " + this.cardsSetAside + " cards aside." + " (Cards left: " + this.cards.length + ")");
+      Log.add("Number of cards to set aside changed, reshuffling and setting " + this.cardsSetAside + " cards aside." + " (Cards left: " + this.cards.length + ")");
+    }
   }
 
   setAside(nrCards) {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Dimensions, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Deck from '../shared/Deck';
 import Header from '../components/Header';
 import Slider from '@react-native-community/slider';
 import Storage from '../shared/Storage';
@@ -14,7 +15,7 @@ export default class SettingsScreen extends React.Component {
       isScreenAlive: false,
       isNightModeEnabled: false,
       isSoundEnabled: true,
-      nrCardsSetAsideValue: 12,
+      nrCardsSetAside: 12,
     };
 
     this.populateFromStorage();
@@ -30,9 +31,12 @@ export default class SettingsScreen extends React.Component {
     });
   }
 
-  _onChangeNrCardsSetAside = (value) => {
-    Storage.set('nrCardsSetAsideValue', value);
-    this.setState({nrCardsSetAsideValue: value});
+  _onChangeNrCardsSetAside = async (value) => {
+    Storage.set('nrCardsSetAside', value);
+    this.setState({nrCardsSetAside: value});
+
+    const deck = await Deck.instance();
+    deck.setCardsSetAside(value);
   }
 
   populateFromStorage = () => {
@@ -81,13 +85,13 @@ export default class SettingsScreen extends React.Component {
                 minimumValue={0}
                 maximumValue={35}
                 step={1}
-                value={12}
+                value={this.state.nrCardsSetAside}
                 minimumTrackTintColor="#000"
                 thumbTintColor="#000"
                 onValueChange={value => this._onChangeNrCardsSetAside(value)}
               />
               <Text style={styles.sliderValue} ref={this.sliderValue}>
-                {this.state.nrCardsSetAsideValue}
+                {this.state.nrCardsSetAside}
               </Text>
             </View>
           </View>
