@@ -2,6 +2,16 @@ import { knuthShuffle } from 'knuth-shuffle';
 import Log from './Log';
 
 export default class Deck {
+  static _instance = null;
+
+  static _getInstance() {
+    if (Deck._instance === null) {
+      Deck._instance = new Deck();
+    }
+
+    return this._instance;
+  }
+
   constructor() {
     this.SET_ASIDE_NR_CARDS = 12; // TODO: move to settings
     this.cards = [];
