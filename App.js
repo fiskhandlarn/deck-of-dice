@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+import AudioPlayer from './shared/AudioPlayer.js';
+import Drawer from './components/Drawer';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AudioPlayer from './shared/AudioPlayer.js'
-import Drawer from './components/Drawer';
 
 export default class App extends React.Component {
   constructor(props) {
