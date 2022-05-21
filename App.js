@@ -32,8 +32,9 @@ export default class App extends React.Component {
       ]);
     } catch (error) {
       console.warn(error);
+      return false;
     }
-  }
+  };
 
   render() {
     if (!this.state.isReady) {
