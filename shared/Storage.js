@@ -23,8 +23,6 @@ export default class Storage {
   };
 
   static set = async(key, value) => {
-    console.log(key, value);
-
     try {
       await AsyncStorage.setItem('@' + key, value);
     } catch (e) {

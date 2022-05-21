@@ -21,7 +21,6 @@ export default class Log {
       id: log.data.length.toString(),
       message: message,
     });
-    console.log(log.data);
   }
 
   static get() {
