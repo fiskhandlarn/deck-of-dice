@@ -23,6 +23,7 @@ export default class Drawer extends React.Component {
                 size={size}
               />
             ),
+            headerShown: false,
           }}
         />
         <D.Screen
@@ -35,6 +36,7 @@ export default class Drawer extends React.Component {
                 size={size}
               />
             ),
+            headerShown: false,
           }}
         />
         <D.Screen
@@ -47,6 +49,7 @@ export default class Drawer extends React.Component {
                 size={size}
               />
             ),
+            headerShown: false,
           }}
         />
         <D.Screen
@@ -59,6 +62,7 @@ export default class Drawer extends React.Component {
                 size={size}
               />
             ),
+            headerShown: false,
           }}
         />
       </D.Navigator>
