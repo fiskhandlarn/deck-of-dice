@@ -20,7 +20,9 @@ export default class HomeScreen extends React.Component {
     const card = deck.draw();
     this.digitButton.current.setValue(card);
 
-    const isSoundEnabled = (await Storage.get('isSoundEnabled') === 'true');
+    let isSoundEnabled = await Storage.get('isSoundEnabled');
+    isSoundEnabled = ('true' === isSoundEnabled || null === isSoundEnabled);
+
     if (isSoundEnabled) {
       if (card == 7) {
         AudioPlayer.playSound('dice7');
