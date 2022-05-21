@@ -2,32 +2,60 @@ import * as React from 'react';
 import { Dimensions, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Slider from '@react-native-community/slider';
 import Header from '../components/Header';
+import Slider from '@react-native-community/slider';
+import Storage from '../shared/Storage';
 
 export default class SettingsScreen extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      isOption1Enabled: false,
-      isOption2Enabled: false,
-      isOption3Enabled: true,
-      slider1Value: 12,
-    }
+      isScreenAlive: false,
+      isNightModeEnabled: false,
+      isSoundEnabled: true,
+      nrCardsSetAsideValue: 12,
+    };
+
+    this.populateFromStorage();
 
     this.sliderValue = React.createRef();
   }
 
   _onChangeSwitch = (option) => {
+    Storage.set(option, !this.state[option]);
+
     this.setState({
-      [option]: !this.state[option]
-    })
+      [option]: !this.state[option],
+    });
   }
 
-  _onChangeSlider1 = (value) => {
-    // TODO save value to store
-    this.setState({slider1Value: value})
+  _onChangeNrCardsSetAside = (value) => {
+    Storage.set('nrCardsSetAsideValue', value);
+    this.setState({nrCardsSetAsideValue: value});
   }
+
+  populateFromStorage = () => {
+    Object.keys(this.state).map(async (option) => {
+      let value = await Storage.get(option);
+
+      if (value !== null) {
+        // value is previously stored, let's use it
+
+        if (!isNaN(parseInt(value))) {
+          value = parseInt(value);
+        } else if ('false' === value) {
+          value = false;
+        } else if ('true' === value) {
+          value = true;
+        }
+
+        this.setState({
+          [option]: value,
+        });
+      }
+    });
+  };
 
   render() {
     return (
@@ -37,15 +65,15 @@ export default class SettingsScreen extends React.Component {
           <View style={styles.content}>
             <View style={styles.switchContainer}>
               <Text style={styles.switchLabel}>Keep screen alive</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isOption1Enabled')} value={this.state.isOption1Enabled} />
+              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isScreenAlive')} value={this.state.isScreenAlive} />
             </View>
             <View style={styles.switchContainer}>
               <Text style={styles.switchLabel}>Enable night mode</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isOption2Enabled')} value={this.state.isOption2Enabled} />
+              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isNightModeEnabled')} value={this.state.isNightModeEnabled} />
             </View>
             <View style={styles.switchContainer}>
               <Text style={styles.switchLabel}>Enable sounds</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isOption3Enabled')} value={this.state.isOption3Enabled} />
+              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isSoundEnabled')} value={this.state.isSoundEnabled} />
             </View>
             <View style={styles.sliderContainer}>
               <Text style={styles.sliderLabel}>Number of cards to set aside when the deck is shuffled</Text>
@@ -56,10 +84,10 @@ export default class SettingsScreen extends React.Component {
                 value={12}
                 minimumTrackTintColor="#000"
                 thumbTintColor="#000"
-                onValueChange={value => this._onChangeSlider1(value)}
+                onValueChange={value => this._onChangeNrCardsSetAside(value)}
               />
               <Text style={styles.sliderValue} ref={this.sliderValue}>
-                {this.state.slider1Value}
+                {this.state.nrCardsSetAsideValue}
               </Text>
             </View>
           </View>
