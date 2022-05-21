@@ -13,21 +13,21 @@ export default class Deck {
   }
 
   constructor() {
-    this.SET_ASIDE_NR_CARDS = 12; // TODO: move to settings
+    this.setAsideNrCards = 12; // TODO: move to settings
     this.cards = [];
     this.graveyard = [];
     this.cardDistribution = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1];
 
     this.init();
     this.reset();
-    Log.add("Shuffling deck and setting " + this.SET_ASIDE_NR_CARDS + " cards aside." + " (Cards left: " + this.cards.length + ")");
+    Log.add("Shuffling deck and setting " + this.setAsideNrCards + " cards aside." + " (Cards left: " + this.cards.length + ")");
   }
 
   draw() {
     if (!this.hasMoreCards()) {
       this.reset();
       //console.log("Deck exhausted, reshuffling." + " (Cards left: " + this.cards.length + ")");
-      Log.add("Deck exhausted, reshuffling and setting " + this.SET_ASIDE_NR_CARDS + " cards aside." + " (Cards left: " + this.cards.length + ")");
+      Log.add("Deck exhausted, reshuffling and setting " + this.setAsideNrCards + " cards aside." + " (Cards left: " + this.cards.length + ")");
     }
 
     var card = this.cards.pop();
@@ -64,7 +64,7 @@ export default class Deck {
     knuthShuffle(this.cards);
 
     // remove 12 cards from draw pile
-    this.setAside(this.SET_ASIDE_NR_CARDS);
+    this.setAside(this.setAsideNrCards);
   }
 
   setAside(nrCards) {
