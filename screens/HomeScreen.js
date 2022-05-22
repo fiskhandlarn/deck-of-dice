@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import AudioPlayer from '../shared/AudioPlayer.js';
+import ColorMode from '../shared/ColorMode';
 import Deck from '../shared/Deck';
 import DigitButton from '../components/DigitButton';
 import Header from '../components/Header';
 import Storage from '../shared/Storage';
+import { Button, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, ColorMode.styles().container]}>
         <Header title="Home" openDrawer={this.props.navigation.openDrawer}/>
         <View style={styles.content}>
           <DigitButton onChange={this.onChangeDigitButton} ref={this.digitButton}/>
@@ -53,8 +54,6 @@ const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     justifyContent: 'center',
-    // borderColor: '#0f0',
-    // borderWidth: StyleSheet.hairlineWidth,
     marginBottom: Header.height,
   },
 });

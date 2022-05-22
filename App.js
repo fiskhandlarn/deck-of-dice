@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import AudioPlayer from './shared/AudioPlayer.js';
+import ColorMode from './shared/ColorMode';
 import Drawer from './components/Drawer';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +14,8 @@ export default class App extends React.Component {
     this.state = {
       isReady: false,
     };
+
+    ColorMode.init();
   }
 
   async _cacheResourcesAsync(app) {

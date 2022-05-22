@@ -1,9 +1,20 @@
-import React from 'react';
+import * as React from 'react';
+import Storage from '../shared/Storage';
 import { Appearance, StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar'; // automatically switches bar style based on theme!
 
 export default class ColorMode {
   static _value = false;
+
+  static init = async() => {
+    let isNightModeEnabled = await Storage.get('isNightModeEnabled');
+
+    if (isNightModeEnabled === null) {
+      this.value(this.systemValue());
+    } else {
+      this.value('true' === isNightModeEnabled);
+    }
+  };
 
   static grayColor() {
     return this.value() ? '#939393' : '#b1b1b1'; // https://material.io/design/color/dark-theme.html#ui-application
@@ -23,7 +34,7 @@ export default class ColorMode {
           backgroundColor: this.value() ? '#121212' : '#fff', // https://material.io/design/color/dark-theme.html#properties
         },
         text: {
-          color: this.value() ? '#e5e5e5' : '#000',
+          color: this.value() ? '#e5e5e5' : '#222',
         }
       });
   }
