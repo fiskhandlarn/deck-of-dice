@@ -6,7 +6,7 @@ import { Dimensions, FlatList, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const renderItem = ({ item }) => (
-  <Text style={ColorMode.styles().text}>{item.message}</Text>
+  <Text style={[styles.text, ColorMode.styles().text]}>{item.message}</Text>
 );
 
 export default class LogScreen extends React.Component {
@@ -65,4 +65,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height - Header.height,
     paddingHorizontal: 16,
   },
+  text: {
+    fontFamily: 'monospace',
+  }
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CatanText from '../components/CatanText';
 import ColorMode from '../shared/ColorMode';
 import Deck from '../shared/Deck';
 import Header from '../components/Header';
@@ -99,7 +100,7 @@ export default class SettingsScreen extends React.Component {
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.content}>
             <View style={styles.switchContainer}>
-              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Keep screen alive</Text>
+              <CatanText style={[styles.switchLabel, ColorMode.styles().text]}>Keep screen alive</CatanText>
               <Switch
                 style={styles.toggle}
                 onValueChange={() => this._onChangeSwitch('isScreenAlive')}
@@ -110,7 +111,7 @@ export default class SettingsScreen extends React.Component {
               />
             </View>
             <View style={styles.switchContainer}>
-              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Enable dark mode</Text>
+              <CatanText style={[styles.switchLabel, ColorMode.styles().text]}>Enable dark mode</CatanText>
               <Switch
                 style={styles.toggle}
                 onValueChange={() => this._onChangeSwitch('isNightModeEnabled')}
@@ -121,7 +122,7 @@ export default class SettingsScreen extends React.Component {
               />
             </View>
             <View style={styles.switchContainer}>
-              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Enable sounds</Text>
+              <CatanText style={[styles.switchLabel, ColorMode.styles().text]}>Enable sounds</CatanText>
               <Switch
                 style={styles.toggle}
                 onValueChange={() => this._onChangeSwitch('isSoundEnabled')}
@@ -132,7 +133,7 @@ export default class SettingsScreen extends React.Component {
               />
             </View>
             <View style={styles.sliderContainer}>
-              <Text style={[styles.sliderLabel, ColorMode.styles().text]}>Number of cards to set aside when the deck is shuffled</Text>
+              <CatanText style={[styles.sliderLabel, ColorMode.styles().text]}>Number of cards to set aside when the deck is shuffled</CatanText>
               <Slider
                 minimumValue={0}
                 maximumValue={35}
@@ -143,9 +144,9 @@ export default class SettingsScreen extends React.Component {
                 maximumTrackTintColor={ColorMode.grayColor()}
                 onSlidingComplete={value => this._onChangeNrCardsSetAside(value)}
               />
-              <Text style={[styles.sliderValue, ColorMode.styles().text]} ref={this.sliderValue}>
+              <CatanText style={[styles.sliderValue, ColorMode.styles().text]} ref={this.sliderValue}>
                 {this.state.nrCardsSetAside}
-              </Text>
+              </CatanText>
             </View>
           </View>
         </ScrollView>

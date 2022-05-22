@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/crimson-text": "^0.2.0",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "@react-native-community/masked-view": "0.1.11",
     "@react-native-community/slider": "4.2.1",

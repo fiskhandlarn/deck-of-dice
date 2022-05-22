@@ -1,4 +1,5 @@
 import * as React from 'react';
+import CatanText from '../components/CatanText';
 import ColorMode from '../shared/ColorMode';
 import Header from '../components/Header';
 import logo from '../assets/icon.png';
@@ -6,6 +7,7 @@ import Markdown from 'react-native-markdown-display';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { vw } from 'react-native-expo-viewport-units';
+import { CrimsonText_400Regular, CrimsonText_700Bold } from '@expo-google-fonts/crimson-text';
 
 export default class AboutScreen extends React.Component {
   constructor(props) {
@@ -25,12 +27,19 @@ export default class AboutScreen extends React.Component {
 
   render() {
     const markdownStyles = StyleSheet.create({
+      body: {
+        fontFamily: 'CrimsonText_400Regular',
+      },
       heading3: {
+        fontFamily: 'CrimsonText_700Bold',
         fontSize: 24,
+        fontWeight: 'bold',
         marginVertical: 10,
       },
       heading4: {
+        fontFamily: 'CrimsonText_700Bold',
         fontSize: 18,
+        fontWeight: 'bold',
         marginVertical: 10,
       },
       text: StyleSheet.flatten(ColorMode.styles().text),
@@ -46,9 +55,9 @@ export default class AboutScreen extends React.Component {
         <ScrollView style={styles.scrollContainer} contentContainerStyle={{alignItems: 'center'}}>
           <View style={styles.content}>
             <Image source={logo} style={styles.logo}/>
-            <Text style={[styles.h1, ColorMode.styles().text]}>Deck of Dice</Text>
-            <Text style={[styles.p, ColorMode.styles().text]}>This program replaces the dice in Catan. The program uses a deck which consists of 36 dice cards to represent the 36 different combinations that can be rolled with 2 dice. This means that number "rolls" are evenly distributed according to its probability. To add an element of randomness to the dice deck, 12 cards are removed at random whenever the deck is reshuffled (the number of cards removed can be changed in the settings).</Text>
-            <Text style={[styles.p, ColorMode.styles().text]}>Copyright © 2022 Oskar Joelson.</Text>
+            <CatanText style={[styles.h1, ColorMode.styles().text]}>Deck of Dice</CatanText>
+            <CatanText style={[styles.p, ColorMode.styles().text]}>This program replaces the dice in Catan. The program uses a deck which consists of 36 dice cards to represent the 36 different combinations that can be rolled with 2 dice. This means that number "rolls" are evenly distributed according to its probability. To add an element of randomness to the dice deck, 12 cards are removed at random whenever the deck is reshuffled (the number of cards removed can be changed in the settings).</CatanText>
+            <CatanText style={[styles.p, ColorMode.styles().text]}>Copyright © 2022 Oskar Joelson.</CatanText>
             <Markdown style={markdownStyles}>Source code is available at: [https://github.com/fiskhandlarn/deck-of-dice](https://github.com/fiskhandlarn/deck-of-dice).</Markdown>
             <Markdown style={markdownStyles}>To send comments and report bugs use issue tracker at: [https://github.com/fiskhandlarn/deck-of-dice/issues](https://github.com/fiskhandlarn/deck-of-dice/issues).</Markdown>
             <Markdown style={markdownStyles}>{license}</Markdown>
