@@ -1,7 +1,8 @@
 import * as React from 'react';
 import ColorMode from '../shared/ColorMode';
+import Header from '../components/Header';
 import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
-import { vmin } from 'react-native-expo-viewport-units';
+import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
 export default class DigitButton extends React.Component {
   constructor(props) {
@@ -55,14 +56,15 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     display: 'flex',
-    height: vmin(80),
+    flexGrow: 1,
+    height: (vh(100) - (Header.height * 2)),
     justifyContent: 'center',
-    overflow: 'hidden',
-    width: vmin(80),
+    width: vw(100),
   },
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
+    marginBottom: Header.height,
   },
   digit: {
     fontFamily: 'VnBook-Antiqua',

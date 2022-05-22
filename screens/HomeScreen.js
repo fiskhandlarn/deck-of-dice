@@ -57,13 +57,13 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
     alignItems: 'center',
+    flexGrow: 1,
     justifyContent: 'flex-start',
+    overflow: 'hidden',
   },
   content: {
     flexGrow: 1,
     justifyContent: 'center',
-    marginBottom: Header.height,
   },
 });
