@@ -41,11 +41,13 @@ export default class SettingsScreen extends React.Component {
   }
 
   _onChangeNrCardsSetAside = async (value) => {
-    Storage.set('nrCardsSetAside', value);
-    this.setState({nrCardsSetAside: value});
+    if (this.state.nrCardsSetAside !== value) {
+      Storage.set('nrCardsSetAside', value);
+      this.setState({nrCardsSetAside: value});
 
-    const deck = await Deck.instance();
-    deck.setCardsSetAside(value);
+      const deck = await Deck.instance();
+      deck.setCardsSetAside(value);
+    }
   }
 
   populateFromStorage = () => {
@@ -139,7 +141,7 @@ export default class SettingsScreen extends React.Component {
                 minimumTrackTintColor={ColorMode.primaryLightColor()}
                 thumbTintColor={ColorMode.primaryColor()}
                 maximumTrackTintColor={ColorMode.grayColor()}
-                onValueChange={value => this._onChangeNrCardsSetAside(value)}
+                onSlidingComplete={value => this._onChangeNrCardsSetAside(value)}
               />
               <Text style={[styles.sliderValue, ColorMode.styles().text]} ref={this.sliderValue}>
                 {this.state.nrCardsSetAside}
