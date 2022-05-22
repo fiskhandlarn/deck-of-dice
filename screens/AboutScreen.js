@@ -8,6 +8,21 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { vw } from 'react-native-expo-viewport-units';
 
 export default class AboutScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+
+    ColorMode.addListener((value) => this.onColorModeChange(value));
+
+    this.state = {
+      colorMode: ColorMode.value(),
+    };
+  }
+
+  onColorModeChange(value) {
+    this.setState({ colorMode: value });
+  }
+
   render() {
     const markdownStyles = StyleSheet.create({
       heading3: {

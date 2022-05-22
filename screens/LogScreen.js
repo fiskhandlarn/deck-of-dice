@@ -13,7 +13,11 @@ export default class LogScreen extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
+
+    ColorMode.addListener((value) => this.onColorModeChange(value));
+
     this.state = {
+      colorMode: ColorMode.value(),
       data: Log.get(),
     };
   }
@@ -29,6 +33,10 @@ export default class LogScreen extends React.Component {
 
   componentWillUnmount() {
     this.props.navigation.removeListener('focus', this._onFocus);
+  }
+
+  onColorModeChange(value) {
+    this.setState({ colorMode: value });
   }
 
   render() {

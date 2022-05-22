@@ -5,6 +5,11 @@ import { StatusBar } from 'expo-status-bar'; // automatically switches bar style
 
 export default class ColorMode {
   static _value = false;
+  static _listeners = [];
+
+  static addListener(listener) {
+    this._listeners.push(listener);
+  }
 
   static init = async() => {
     let isNightModeEnabled = await Storage.get('isNightModeEnabled');
@@ -47,7 +52,15 @@ export default class ColorMode {
   // true if dark mode
   static value(value = null) {
     if (null !== value) {
-      this._value = value;
+      const currentValue = this._value;
+
+      if (currentValue !== value) {
+        this._value = value;
+
+        if (this._listeners && this._listeners.length > 0) {
+          this._listeners.forEach(listener => listener(value));
+        }
+      }
     }
 
     return this._value;

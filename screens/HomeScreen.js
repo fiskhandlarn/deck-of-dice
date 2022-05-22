@@ -14,6 +14,16 @@ export default class HomeScreen extends React.Component {
     this.props = props;
 
     this.digitButton = React.createRef();
+
+    ColorMode.addListener((value) => this.onColorModeChange(value));
+
+    this.state = {
+      colorMode: ColorMode.value(),
+    };
+  }
+
+  onColorModeChange(value) {
+    this.setState({ colorMode: value });
   }
 
   onChangeDigitButton = async () => {
