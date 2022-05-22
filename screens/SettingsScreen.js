@@ -22,8 +22,6 @@ export default class SettingsScreen extends React.Component {
     };
 
     this.populateFromStorage();
-
-    this.sliderValue = React.createRef();
   }
 
   _onChangeSwitch = (option) => {
@@ -42,12 +40,16 @@ export default class SettingsScreen extends React.Component {
   }
 
   _onChangeNrCardsSetAside = async (value) => {
-    if (this.state.nrCardsSetAside !== value) {
-      Storage.set('nrCardsSetAside', value);
-      this.setState({nrCardsSetAside: value});
+    Storage.set('nrCardsSetAside', value);
+    this.setState({nrCardsSetAside: value});
 
-      const deck = await Deck.instance();
-      deck.setCardsSetAside(value);
+    const deck = await Deck.instance();
+    deck.setCardsSetAside(value);
+  }
+
+  _onUpdateNrCardsSetAside(value) {
+    if (this.state.nrCardsSetAside !== value) {
+      this.setState({nrCardsSetAside: value});
     }
   }
 
@@ -143,8 +145,9 @@ export default class SettingsScreen extends React.Component {
                 thumbTintColor={ColorMode.primaryColor()}
                 maximumTrackTintColor={ColorMode.grayColor()}
                 onSlidingComplete={value => this._onChangeNrCardsSetAside(value)}
+                onValueChange={value => this._onUpdateNrCardsSetAside(value)}
               />
-              <CatanText style={[styles.sliderValue, ColorMode.styles().text]} ref={this.sliderValue}>
+              <CatanText style={[styles.sliderValue, ColorMode.styles().text]}>
                 {this.state.nrCardsSetAside}
               </CatanText>
             </View>
