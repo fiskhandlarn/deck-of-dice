@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Dimensions, FlatList, StyleSheet, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ColorMode from '../shared/ColorMode';
 import Header from '../components/Header';
 import Log from '../shared/Log';
+import { Dimensions, FlatList, StyleSheet, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const renderItem = ({ item }) => (
-  <Text>{item.message}</Text>
+  <Text style={ColorMode.styles().text}>{item.message}</Text>
 );
 
 export default class LogScreen extends React.Component {
@@ -14,12 +15,12 @@ export default class LogScreen extends React.Component {
     this.props = props;
     this.state = {
       data: Log.get(),
-    }
+    };
   }
 
   _onFocus = () => {
     // force re-read from log
-    this.setState({data: Log.get()})
+    this.setState({data: Log.get()});
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ export default class LogScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, ColorMode.styles().container]}>
         <Header title="Log" openDrawer={this.props.navigation.openDrawer}/>
         <FlatList
           style={styles.list}
