@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ColorMode from '../shared/ColorMode';
 import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class Header extends React.Component {
   static height = 64;
@@ -13,10 +14,10 @@ export default class Header extends React.Component {
   render() {
     return (
       <View style={styles.view}>
-        <TouchableOpacity onPress={()=>this.props.openDrawer()} style={styles.button}>
-          <MaterialIcons name="menu" size={32} />
+        <TouchableOpacity onPress={()=>this.props.openDrawer()} >
+          <MaterialIcons name="menu" size={32} style={ColorMode.styles().text} />
         </TouchableOpacity>
-        <Text style={styles.text}>{this.props.title}</Text>
+        <Text style={[styles.text, ColorMode.styles().text]}>{this.props.title}</Text>
       </View>
     );
   }
@@ -25,8 +26,6 @@ export default class Header extends React.Component {
 const styles = StyleSheet.create({
   view: {
     alignItems: 'center',
-    // borderColor: '#0000f0',
-    // borderWidth: StyleSheet.hairlineWidth,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -34,16 +33,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: Header.height,
   },
-  button: {
-    // borderColor: '#0f0',
-    // borderWidth: StyleSheet.hairlineWidth,
-  },
   text: {
-    // borderColor: '#f00',
-    // borderWidth: StyleSheet.hairlineWidth,
+    fontSize: 18,
     flexGrow: 1,
     marginRight: 32,
     textAlign: 'center',
   }
-
 });
