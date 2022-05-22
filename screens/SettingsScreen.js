@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ColorMode from '../shared/ColorMode';
 import Deck from '../shared/Deck';
 import Header from '../components/Header';
 import Slider from '@react-native-community/slider';
@@ -14,7 +15,7 @@ export default class SettingsScreen extends React.Component {
     super(props);
     this.state = {
       isScreenAlive: false,
-      isNightModeEnabled: false,
+      isNightModeEnabled: ColorMode.systemValue(),
       isSoundEnabled: true,
       nrCardsSetAside: 12,
     };
@@ -32,6 +33,10 @@ export default class SettingsScreen extends React.Component {
 
     if ('isScreenAlive' === option) {
       this.updateKeepScreenAlive(value);
+    }
+
+    if ('isNightModeEnabled' === option) {
+      this.updateNightModeEnabled(value);
     }
   }
 
@@ -65,6 +70,10 @@ export default class SettingsScreen extends React.Component {
         if ('isScreenAlive' === option) {
           this.updateKeepScreenAlive(value);
         }
+
+        if ('isNightModeEnabled' === option) {
+          this.updateNightModeEnabled(value);
+        }
       }
     });
   };
@@ -77,36 +86,62 @@ export default class SettingsScreen extends React.Component {
     }
   }
 
+  updateNightModeEnabled = (value)  => {
+    ColorMode.value(value);
+  }
+
   render() {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, ColorMode.styles().container]}>
         <Header title="Settings" openDrawer={this.props.navigation.openDrawer}/>
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.content}>
             <View style={styles.switchContainer}>
-              <Text style={styles.switchLabel}>Keep screen alive</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isScreenAlive')} value={this.state.isScreenAlive} />
+              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Keep screen alive</Text>
+              <Switch
+                style={styles.toggle}
+                onValueChange={() => this._onChangeSwitch('isScreenAlive')}
+                value={this.state.isScreenAlive}
+                trackColor={{false: ColorMode.grayColor(), true: ColorMode.primaryLightColor()}}
+                thumbColor={ColorMode.primaryColor()}
+                activeThumbColor={ColorMode.primaryColor()} // https://github.com/facebook/react-native/issues/30429#issuecomment-752745032
+              />
             </View>
             <View style={styles.switchContainer}>
-              <Text style={styles.switchLabel}>Enable night mode</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isNightModeEnabled')} value={this.state.isNightModeEnabled} />
+              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Enable dark mode</Text>
+              <Switch
+                style={styles.toggle}
+                onValueChange={() => this._onChangeSwitch('isNightModeEnabled')}
+                value={this.state.isNightModeEnabled}
+                trackColor={{false: ColorMode.grayColor(), true: ColorMode.primaryLightColor()}}
+                thumbColor={ColorMode.primaryColor()}
+                activeThumbColor={ColorMode.primaryColor()} // https://github.com/facebook/react-native/issues/30429#issuecomment-752745032
+              />
             </View>
             <View style={styles.switchContainer}>
-              <Text style={styles.switchLabel}>Enable sounds</Text>
-              <Switch style={styles.toggle} onValueChange={() => this._onChangeSwitch('isSoundEnabled')} value={this.state.isSoundEnabled} />
+              <Text style={[styles.switchLabel, ColorMode.styles().text]}>Enable sounds</Text>
+              <Switch
+                style={styles.toggle}
+                onValueChange={() => this._onChangeSwitch('isSoundEnabled')}
+                value={this.state.isSoundEnabled}
+                trackColor={{false: ColorMode.grayColor(), true: ColorMode.primaryLightColor()}}
+                thumbColor={ColorMode.primaryColor()}
+                activeThumbColor={ColorMode.primaryColor()} // https://github.com/facebook/react-native/issues/30429#issuecomment-752745032
+              />
             </View>
             <View style={styles.sliderContainer}>
-              <Text style={styles.sliderLabel}>Number of cards to set aside when the deck is shuffled</Text>
+              <Text style={[styles.sliderLabel, ColorMode.styles().text]}>Number of cards to set aside when the deck is shuffled</Text>
               <Slider
                 minimumValue={0}
                 maximumValue={35}
                 step={1}
                 value={this.state.nrCardsSetAside}
-                minimumTrackTintColor="#000"
-                thumbTintColor="#000"
+                minimumTrackTintColor={ColorMode.primaryLightColor()}
+                thumbTintColor={ColorMode.primaryColor()}
+                maximumTrackTintColor={ColorMode.grayColor()}
                 onValueChange={value => this._onChangeNrCardsSetAside(value)}
               />
-              <Text style={styles.sliderValue} ref={this.sliderValue}>
+              <Text style={[styles.sliderValue, ColorMode.styles().text]} ref={this.sliderValue}>
                 {this.state.nrCardsSetAside}
               </Text>
             </View>
@@ -153,6 +188,5 @@ const styles = StyleSheet.create({
   },
   sliderValue: {
     textAlign: 'right',
-    color: '#aaa', // TODO variable
   }
 });
