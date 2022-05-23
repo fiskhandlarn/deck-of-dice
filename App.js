@@ -1,63 +1,59 @@
 import 'react-native-gesture-handler';
 import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 import AudioPlayer from './shared/AudioPlayer.js';
 import ColorMode from './shared/ColorMode';
 import Drawer from './components/Drawer';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isReady: false,
-    };
+export default function App() {
+  ColorMode.init();
 
-    ColorMode.init();
-  }
+  const [appIsReady, setAppIsReady] = useState(false);
 
-  async _cacheResourcesAsync(app) {
-    try {
-      const sounds = AudioPlayer.load(
-        {
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Keep the splash screen visible while we fetch resources
+        await SplashScreen.preventAutoHideAsync();
+
+        const sounds = AudioPlayer.load({
           'dice': require('./assets/sounds/dice.mp3'),
           'dice7': require('./assets/sounds/dice7.mp3'),
-        }
-      );
+        });
 
-      return Promise.all([
-        Font.loadAsync({
+        await Promise.all([sounds]);
+
+        await Font.loadAsync({
           'CrimsonText_400Regular': require('@expo-google-fonts/crimson-text/CrimsonText_400Regular.ttf'),
           'CrimsonText_700Bold': require('@expo-google-fonts/crimson-text/CrimsonText_700Bold.ttf'),
           'VnBook-Antiqua': require('./assets/fonts/VnBook-Antiqua.otf'),
-        }),
-        ...sounds
-      ]);
-    } catch (error) {
-      console.warn(error);
-      return false;
-    }
-  };
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
 
-  render() {
-    if (!this.state.isReady) {
-      return (
-        <AppLoading
-          startAsync={this._cacheResourcesAsync}
-          onFinish={() => this.setState({ isReady: true })}
-          onError={console.warn}
-        />
-      );
+        // TODO move to onLayoutRootView instead?
+        await SplashScreen.hideAsync();
+      }
     }
 
-    return (
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Drawer />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    );
+    prepare();
+  }, []);
+
+  if (!appIsReady) {
+    return null;
   }
+
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Drawer />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
 }
