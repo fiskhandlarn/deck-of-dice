@@ -19,14 +19,16 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "userInterfaceStyle": "automatic"
+      "userInterfaceStyle": "automatic",
+      "bundleIdentifier": "org.joelson.deckofdice"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "userInterfaceStyle": "automatic"
+      "userInterfaceStyle": "automatic",
+      "package": "org.joelson.deckofdice"
     },
     "web": {
       "favicon": "./assets/favicon.png"
