@@ -61,7 +61,7 @@ export default class Drawer extends React.Component {
     return {
       drawerActiveTintColor: ColorMode.primaryLightColor(),
       drawerLabel: ({focused, size}) => (
-        <Text style={focused ? {color: ColorMode.primaryColor()} : ColorMode.styles().text}>{title}</Text>
+        <Text style={[styles.label, focused ? {color: ColorMode.primaryColor()} : ColorMode.styles().text]}>{title}</Text>
       ),
       drawerIcon: ({focused, size}) => (
         <IconClass
@@ -74,3 +74,10 @@ export default class Drawer extends React.Component {
     };
   }
 }
+
+const styles = StyleSheet.create({
+  label: {
+    fontFamily: 'CrimsonText_400Regular',
+    fontSize: 16,
+  },
+});
