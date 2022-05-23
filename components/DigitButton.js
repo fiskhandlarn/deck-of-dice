@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     display: 'flex',
-    flexGrow: 1,
-    height: (vh(100) - (Header.height * 2)),
+    height: (vh(100) - Header.height),
     justifyContent: 'center',
+    overflow: 'hidden',
     width: vw(100),
   },
   wrapper: {
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   digit: {
     fontFamily: 'VnBook-Antiqua',
-    fontSize: vmin(70),
+    fontSize: vmin(100),
     marginLeft: -vmin(1.75),
     marginRight: -vmin(1.75),
   },
