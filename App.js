@@ -29,6 +29,8 @@ export default class App extends React.Component {
 
       return Promise.all([
         Font.loadAsync({
+          'CrimsonText_400Regular': require('@expo-google-fonts/crimson-text/CrimsonText_400Regular.ttf'),
+          'CrimsonText_700Bold': require('@expo-google-fonts/crimson-text/CrimsonText_700Bold.ttf'),
           'VnBook-Antiqua': require('./assets/fonts/VnBook-Antiqua.otf'),
         }),
         ...sounds

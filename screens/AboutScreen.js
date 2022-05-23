@@ -7,7 +7,6 @@ import Markdown from 'react-native-markdown-display';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { vw } from 'react-native-expo-viewport-units';
-import { CrimsonText_400Regular, CrimsonText_700Bold } from '@expo-google-fonts/crimson-text';
 
 export default class AboutScreen extends React.Component {
   constructor(props) {
