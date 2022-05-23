@@ -24,7 +24,7 @@ export default class Storage {
 
   static set = async(key, value) => {
     try {
-      await AsyncStorage.setItem('@' + key, value);
+      await AsyncStorage.setItem('@' + key, value.toString());
     } catch (e) {
       // saving error ¯\_(ツ)_/¯
     }
