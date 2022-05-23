@@ -5,6 +5,8 @@ import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import { vh, vmin, vw } from 'react-native-expo-viewport-units';
 
 export default class DigitButton extends React.Component {
+  static hasShownNagOnce = false;
+
   constructor(props) {
     super(props);
     this.props = props;
@@ -12,15 +14,44 @@ export default class DigitButton extends React.Component {
       value: '!',
       animation: new Animated.Value(1),
     };
+
+    this.timer = false;
+  }
+
+  clearTimer() {
+    if (false !== this.timer) {
+      clearInterval(this.timer);
+      this.timer = false;
+    }
+  }
+
+  componentDidMount() {
+    if (!this.hasShownNagOnce) {
+      this.timer = setInterval(() => this.onTimer(), 3000);
+      this.hasShownNagOnce = true;
+    }
+  }
+
+  componentWillUnmount() {
+    this.clearTimer();
   }
 
   onPress = () => {
+    this.clearTimer();
     this.props.onChange();
   };
+
+  onTimer () {
+    this.startAnimation();
+  }
 
   setValue(value) {
     this.setState({ value: value });
 
+    this.startAnimation();
+  }
+
+  startAnimation() {
     this.state.animation.setValue(1.15);
     Animated.timing(this.state.animation, {
       toValue: 1,
