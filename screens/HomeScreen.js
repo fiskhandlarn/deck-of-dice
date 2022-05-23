@@ -46,7 +46,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={[styles.container, ColorMode.styles().container]}>
-        <Header title="Home" openDrawer={this.props.navigation.openDrawer}/>
+        <Header openDrawer={this.props.navigation.openDrawer}/>
         <View style={styles.content}>
           <DigitButton onChange={this.onChangeDigitButton} ref={this.digitButton}/>
         </View>
