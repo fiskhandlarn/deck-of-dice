@@ -28,16 +28,17 @@ export default class AboutScreen extends React.Component {
     const markdownStyles = StyleSheet.create({
       body: {
         fontFamily: 'CrimsonText_400Regular',
+        fontSize: 16,
       },
       heading3: {
         fontFamily: 'CrimsonText_700Bold',
-        fontSize: 24,
+        fontSize: 26,
         fontWeight: 'bold',
         marginVertical: 10,
       },
       heading4: {
         fontFamily: 'CrimsonText_700Bold',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         marginVertical: 10,
       },
@@ -94,7 +95,9 @@ const styles = StyleSheet.create({
     width: 400,
   },
   h1: {
+    fontFamily: 'CrimsonText_700Bold',
     fontSize: 40,
+    fontWeight: 'bold',
     marginBottom: 32,
     textAlign: 'center',
   },

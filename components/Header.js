@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: Header.height,
   },
   text: {
-    fontSize: 18,
+    fontSize: 20,
     flexGrow: 1,
     marginRight: 32,
     textAlign: 'center',
