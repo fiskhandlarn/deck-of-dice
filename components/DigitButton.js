@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   digit: {
     fontFamily: 'VnBook-Antiqua',
-    fontSize: vmin(100),
+    fontSize: vmin(90),
     marginLeft: -vmin(1.75),
     marginRight: -vmin(1.75),
   },
