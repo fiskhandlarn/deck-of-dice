@@ -33,14 +33,14 @@ export default class AboutScreen extends React.Component {
       heading3: {
         fontFamily: 'CrimsonText_700Bold',
         fontSize: 26,
-        fontWeight: 'bold',
-        marginVertical: 10,
+        marginBottom: 10,
+        marginTop: 20,
       },
       heading4: {
         fontFamily: 'CrimsonText_700Bold',
         fontSize: 20,
-        fontWeight: 'bold',
-        marginVertical: 10,
+        marginBottom: 10,
+        marginTop: 15,
       },
       text: StyleSheet.flatten(ColorMode.styles().text),
       code_block: {
@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
   h1: {
     fontFamily: 'CrimsonText_700Bold',
     fontSize: 40,
-    fontWeight: 'bold',
     marginBottom: 32,
     textAlign: 'center',
   },
