@@ -49,19 +49,11 @@ This privacy notice for Oskar Joelson ("**Company**," "**we**," "**us**," or "**
 
 **Personal information you disclose to us**
 
-**In Short:** We collect personal information that you provide to us.
+**In Short:** We collect personal settings that you provide to us.
 
-We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.
+We collect personal settings that you voluntarily provide to us when you express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.
 
 **Sensitive Information.** We do not process sensitive information.
-
-**Application Data.** If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:
-
--   *Mobile Device Access.* We may request access or permission to certain features from your mobile device, including your mobile device's microphone, storage, and other features. If you wish to change our access or permissions, you may do so in your device's settings.
-
-This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.
-
-All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.
 
 ## 2\. HOW DO WE PROCESS YOUR INFORMATION?
 
