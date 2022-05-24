@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Storage from '../shared/Storage';
 import { Appearance, StyleSheet } from 'react-native';
-import { StatusBar } from 'expo-status-bar'; // automatically switches bar style based on theme!
 
 export default class ColorMode {
   static _value = false;

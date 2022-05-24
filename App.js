@@ -7,11 +7,13 @@ import Drawer from './components/Drawer';
 import React, { useCallback, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   ColorMode.init();
 
   const [appIsReady, setAppIsReady] = useState(false);
+  const [colorMode] = useState(ColorMode.value());
 
   useEffect(() => {
     async function prepare() {
@@ -54,6 +56,7 @@ export default function App() {
       <NavigationContainer>
         <Drawer />
       </NavigationContainer>
+      <StatusBar style={colorMode ? 'light' : 'dark'} hidden={false} />
     </SafeAreaProvider>
   );
 }
