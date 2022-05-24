@@ -30,7 +30,7 @@
       "package": "org.joelson.deckofdice",
       "permissions": [],
       "userInterfaceStyle": "automatic",
-      "versionCode": 3
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -13,6 +13,9 @@ export default function App() {
   ColorMode.init();
 
   const [appIsReady, setAppIsReady] = useState(false);
+  const [colorMode, setColorMode] = useState(ColorMode.value());
+
+  ColorMode.addListener(value => setColorMode(value));
 
   useEffect(() => {
     async function prepare() {
@@ -55,7 +58,7 @@ export default function App() {
       <NavigationContainer>
         <Drawer />
       </NavigationContainer>
-      <StatusBar hidden={false} />
+      <StatusBar style={colorMode ? 'light' : 'dark'} hidden={false} />
     </SafeAreaProvider>
   );
 }
