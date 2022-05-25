@@ -2,7 +2,7 @@
   "expo": {
     "name": "Deck of Dice",
     "slug": "deck-of-dice",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -30,7 +30,7 @@
       "package": "org.joelson.deckofdice",
       "permissions": [],
       "userInterfaceStyle": "automatic",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"

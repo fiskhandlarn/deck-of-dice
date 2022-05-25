@@ -47,6 +47,8 @@ export default class AboutScreen extends React.Component {
       code_block: {
         backgroundColor: ColorMode.primaryLightColor(),
         borderColor: ColorMode.primaryColor(),
+        fontFamily: 'CrimsonText_400Regular',
+        marginVertical: 10,
       },
     });
 
