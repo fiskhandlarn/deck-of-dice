@@ -15,7 +15,7 @@ export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [colorMode, setColorMode] = useState(ColorMode.value());
 
-  ColorMode.addListener(value => setColorMode(value));
+  ColorMode.addListener((value: any) => setColorMode(value));
 
   useEffect(() => {
     async function prepare() {
