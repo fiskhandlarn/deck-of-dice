@@ -5,14 +5,19 @@
 Install dependencies:
 
 ```bash
-npm install --global expo-cli
 npm install
 ```
 
 Start application:
 
 ```bash
-expo start
+npm run start
+```
+
+or
+
+```bash
+npx expo
 ```
 
 ## License
