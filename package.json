@@ -5,6 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "start": "expo start",
+    "ts:check": "tsc",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -37,6 +38,8 @@
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2"
+    "@babel/core": "^7.23.2",
+    "@types/react": "~18.2.14",
+    "typescript": "^5.1.3"
   }
 }
