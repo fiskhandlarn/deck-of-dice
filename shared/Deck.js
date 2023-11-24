@@ -3,24 +3,34 @@ import Log from './Log';
 import Storage from '../shared/Storage';
 
 export default class Deck {
-  static _instance = null;
+  static _instance:Deck = null;
 
-  static instance = async () => {
+  // TODO restore Storage:
+
+  // static instance = async () => {
+  //   if (Deck._instance === null) {
+  //     let nrCardsSetAside = await Storage.get('nrCardsSetAside');
+
+  //     if (nrCardsSetAside === null || isNaN(parseInt(nrCardsSetAside))) {
+  //       // not set in storage, use default value
+  //       nrCardsSetAside = 12;
+  //     } else {
+  //       nrCardsSetAside = parseInt(nrCardsSetAside);
+  //     }
+
+  //     Deck._instance = new Deck(nrCardsSetAside);
+  //   }
+
+  //   return this._instance;
+  // };
+
+  static instance(): Deck {
     if (Deck._instance === null) {
-      let nrCardsSetAside = await Storage.get('nrCardsSetAside');
-
-      if (nrCardsSetAside === null || isNaN(parseInt(nrCardsSetAside))) {
-        // not set in storage, use default value
-        nrCardsSetAside = 12;
-      } else {
-        nrCardsSetAside = parseInt(nrCardsSetAside);
-      }
-
-      Deck._instance = new Deck(nrCardsSetAside);
+      Deck._instance = new Deck(12);
     }
 
     return this._instance;
-  };
+  }
 
   constructor (nrCardsSetAside) {
     this.cardsSetAside = nrCardsSetAside;
