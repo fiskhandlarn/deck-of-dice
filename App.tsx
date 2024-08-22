@@ -3,7 +3,7 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import AudioPlayer from './shared/AudioPlayer.js';
 import ColorMode from './shared/ColorMode';
-import Drawer from './components/Drawer';
+import { Drawer } from './components/Drawer';
 import React, { useCallback, useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
