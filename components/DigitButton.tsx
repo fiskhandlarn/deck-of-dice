@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, { useSharedValue, withTiming } from 'react-native-reanimated';
 import ColorMode from '../shared/ColorMode';
-import Header from '../components/Header';
+import { HEADER_HEIGHT } from '../components/Header';
 import useUnits from 'rxn-units';
 
 interface DigitButtonProps {
@@ -19,7 +19,7 @@ export const DigitButton = ({ text = '!', onTrigger }: DigitButtonProps) => {
     button: {
       alignItems: 'center',
       display: 'flex',
-      height: (vh(100) - Header.height),
+      height: (vh(100) - HEADER_HEIGHT),
       justifyContent: 'center',
       overflow: 'hidden',
       width: vw(100),
@@ -27,7 +27,7 @@ export const DigitButton = ({ text = '!', onTrigger }: DigitButtonProps) => {
     wrapper: {
       display: 'flex',
       flexDirection: 'row',
-      marginBottom: Header.height,
+      marginBottom: HEADER_HEIGHT,
     },
     digit: {
       fontFamily: 'VnBook-Antiqua',

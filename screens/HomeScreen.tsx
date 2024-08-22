@@ -4,7 +4,7 @@ import AudioPlayer from '../shared/AudioPlayer.js';
 import ColorMode from '../shared/ColorMode';
 import Deck from '../shared/Deck';
 import { DigitButton } from '../components/DigitButton';
-import Header from '../components/Header';
+import { Header } from '../components/Header';
 import Storage from '../shared/Storage';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';

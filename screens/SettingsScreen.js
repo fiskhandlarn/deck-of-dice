@@ -2,7 +2,7 @@ import * as React from 'react';
 import CatanText from '../components/CatanText';
 import ColorMode from '../shared/ColorMode';
 import Deck from '../shared/Deck';
-import Header from '../components/Header';
+import { Header, HEADER_HEIGHT } from '../components/Header';
 import Slider from '@react-native-community/slider';
 import Storage from '../shared/Storage';
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
     // flex calculations on Android for ScrollView are whack, let's calc the height instead:
-    height: Dimensions.get('window').height - Header.height,
+    height: Dimensions.get('window').height - HEADER_HEIGHT,
     width: '100%',
   },
   content: {

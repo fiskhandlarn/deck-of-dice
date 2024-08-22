@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ColorMode from '../shared/ColorMode';
-import Header from '../components/Header';
+import { Header, HEADER_HEIGHT } from '../components/Header';
 import Log from '../shared/Log';
 import { Dimensions, FlatList, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
   list: {
     // flex calculations on Android for FlatList are whack, let's calc the height instead:
-    height: Dimensions.get('window').height - Header.height,
+    height: Dimensions.get('window').height - HEADER_HEIGHT,
     paddingHorizontal: 16,
   },
   text: {
