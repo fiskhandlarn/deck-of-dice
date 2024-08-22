@@ -2,7 +2,7 @@ import * as React from 'react';
 import AboutScreen from '../screens/AboutScreen';
 import ColorMode from '../shared/ColorMode';
 import { HomeScreen } from '../screens/HomeScreen';
-import LogScreen from '../screens/LogScreen';
+import { LogScreen } from '../screens/LogScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Icon, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
