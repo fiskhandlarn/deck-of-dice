@@ -1,7 +1,6 @@
 import * as React from 'react';
 import CatanText from '../components/CatanText';
 import ColorMode from '../shared/ColorMode';
-import Constants from 'expo-constants';
 import Header from '../components/Header';
 import logo from '../assets/icon.png';
 import Markdown from 'react-native-markdown-display';
@@ -59,7 +58,7 @@ export default class AboutScreen extends React.Component {
           <View style={styles.content}>
             <Image source={logo} style={styles.logo}/>
             <CatanText style={[styles.h1, ColorMode.styles().text]}>Deck of Dice</CatanText>
-            <CatanText style={[styles.version, styles.p, ColorMode.styles().text]}>Version {Constants.manifest.version}</CatanText>
+            <CatanText style={[styles.version, styles.p, ColorMode.styles().text]}>Version 1.0.1</CatanText>
             <CatanText style={[styles.p, ColorMode.styles().text]}>This program replaces the dice in Catan. The program uses a deck which consists of 36 dice cards to represent the 36 different combinations that can be rolled with 2 dice. This means that number "rolls" are evenly distributed according to its probability. To add an element of randomness to the dice deck, 12 cards are removed at random whenever the deck is reshuffled (the number of cards removed can be changed in the settings).</CatanText>
             <CatanText style={[styles.p, ColorMode.styles().text]}>Copyright © 2022 Oskar Joelson.</CatanText>
             <Markdown style={markdownStyles}>Source code is available at: [https://github.com/fiskhandlarn/deck-of-dice](https://github.com/fiskhandlarn/deck-of-dice).</Markdown>
