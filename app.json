@@ -5,6 +5,7 @@
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "myapp",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -25,7 +26,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#ffffff"
       },
       "package": "org.joelson.deckofdice",
       "permissions": [],
@@ -33,6 +34,8 @@
       "versionCode": 9
     },
     "web": {
+      "bundler": "metro",
+      "output": "static",
       "favicon": "./assets/favicon.png"
     }
   }
