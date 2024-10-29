@@ -31,7 +31,7 @@
       "package": "org.joelson.deckofdice",
       "permissions": [],
       "userInterfaceStyle": "automatic",
-      "versionCode": 9
+      "versionCode": 11
     },
     "web": {
       "bundler": "metro",
